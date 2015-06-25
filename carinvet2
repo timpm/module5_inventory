@@ -1,0 +1,83 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+public class carInventory
+{
+/*
+ * Search algorithm 
+ * 
+ */
+	public static String srOne(String[] args, String value)
+	{
+		makeArray(args);
+		return inray[0];
+		
+	}
+	
+	
+	/*
+	 * Split line based on delimiter ";" and feed into array
+	 */
+	public static String[] toSplit(String infile)
+	{
+		String [] rayman = infile.split(";");
+		//System.out.println(rayman[2]);
+		for ( int i=0; i<rayman.length; i++)
+		{
+			System.out.print("\t"+rayman[i].trim() );
+			
+		}
+		return rayman;	
+	}
+	/*
+	 * make master array
+	 */
+	public static String makeArray(String[] args, int in_row, int in_col)
+	{
+		try
+		{
+			Scanner inventoryFile = new Scanner(new File(args[0]));
+			String fline=inventoryFile.nextLine();
+			String fray[]=fline.split(" ");
+			int row=Integer.parseInt(fray[0]);
+			int col=Integer.parseInt(fray[1]);
+			String master[][]=new String[row][col];
+			
+		
+			
+			for (int n = 0 ; n < master.length; n++ )
+				{
+				String inline=inventoryFile.nextLine();
+				String sub_master1[]=inline.split(";");
+				
+				for (int m = 0; m < col; m++ )
+					{
+					master[n][m]= sub_master1[m];
+					
+					}
+				}
+		return master[in_row][in_col];				
+		}
+		
+			catch(FileNotFoundException except)
+			{
+			 System.out.println("Error: Inventory read failure. Error: " + except.getMessage());
+			 System.exit(-1);
+			
+			}
+				
+	}
+	/*
+	 * main 
+	 */
+	public  void main(String[] args)
+	{
+		String s= "ford";
+		srOne(args, s);
+	
+	
+	
+	
+	}
+
+}
